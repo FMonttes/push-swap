@@ -6,42 +6,45 @@
 /*   By: fmontes <fmontes@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 18:02:25 by fmontes           #+#    #+#             */
-/*   Updated: 2024/01/31 17:07:06 by fmontes          ###   ########.fr       */
+/*   Updated: 2024/02/01 14:23:03 by fmontes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int is_sorted(t_list *list)
+int	is_sorted(t_list *list)
 {
-	t_node *node = list->head;
-	
+	t_node	*node;
+
+	node = list->head;
 	while (node->next != NULL)
 	{
 		if (node->content > node->next->content)
-			return 0;
+			return (0);
 		node = node->next;
 	}
-	return 1;
+	free(node);
+	return (1);
 }
 
 int	check_dup(t_list *list)
 {
-	t_node *current = list->head;
-	t_node *runner;
+	t_node	*current;
+	t_node	*runner;
 
+	current = list->head;
 	while (current != NULL)
 	{
 		runner = current;
 		while (runner->next != NULL)
 		{
 			if (current->content == runner->next->content)
-				return 1;
+				return (1);
 			runner = runner->next;
 		}
 		current = current->next;
 	}
-	return 0;
+	return (0);
 }
 
 int	ft_isdigit(int c)
@@ -51,12 +54,11 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-
-int check_args(t_list *list)
+int	check_args(t_list *list)
 {
 	if (is_sorted(list) == 1)
-		return 1;
+		return (1);
 	if (check_dup(list) == 1)
-		return 1;
-	return 0;	
+		return (1);
+	return (0);
 }

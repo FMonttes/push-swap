@@ -6,21 +6,20 @@
 /*   By: fmontes <fmontes@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 17:59:28 by fmontes           #+#    #+#             */
-/*   Updated: 2024/01/31 17:03:49 by fmontes          ###   ########.fr       */
+/*   Updated: 2024/02/01 14:21:43 by fmontes          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void add_node_to_top(int n, t_list *list)
+void	add_node_to_top(int n, t_list *list)
 {
-	t_node *new_node = (t_node *)malloc(sizeof(t_node));
+	t_node	*new_node;
 
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (new_node == NULL)
-		return;
-
+		return ;
 	new_node->content = n;
-
 	if (list->head == NULL)
 	{
 		list->head = new_node;
@@ -34,12 +33,13 @@ void add_node_to_top(int n, t_list *list)
 	}
 }
 
-void add_node_to_bottom(int n, t_list *list)
+void	add_node_to_bottom(int n, t_list *list)
 {
-	t_node *new_node = (t_node *)malloc(sizeof(t_node));
+	t_node	*new_node;
 
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (new_node == NULL)
-		return;
+		return ;
 	new_node->content = n;
 	if (list->head == NULL)
 	{
@@ -55,9 +55,9 @@ void add_node_to_bottom(int n, t_list *list)
 	}
 }
 
-void print_list(t_list *list)
+void	print_list(t_list *list)
 {
-	t_node *node;
+	t_node	*node;
 
 	node = list->head;
 	while (node != NULL)
@@ -69,9 +69,12 @@ void print_list(t_list *list)
 
 void	free_stack(t_list *list)
 {
-	t_node *current = list->head;
-	t_node *next;
-	
+	t_node	*current;
+	t_node	*next;
+
+	current = list->head;
+	if (list == NULL)
+		return ;
 	while (current != NULL)
 	{
 		next = current->next;
@@ -81,3 +84,17 @@ void	free_stack(t_list *list)
 	free(list);
 }
 
+int	list_size(t_list *list)
+{
+	t_node *node;
+	int i;
+
+	i = 0;
+	node = list->head;
+	while (node != NULL)
+	{
+		node = node->next;
+		i++;
+	}
+	return (i);
+}
